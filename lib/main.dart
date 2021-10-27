@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
-import 'file.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:url_launcher/url_launcher.dart';
 void main()
 {
   runApp(MaterialApp(
@@ -30,54 +28,13 @@ class _MainState extends State<Main> {
         child: Stack(
 
           children: [
-
-            Container(
-              margin: EdgeInsets.only(top: 100),
-
-              child: ElevatedButton(
-                  child: Text(
-                    'join',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'OpenSans',
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                onPressed: () async
-                  {
-
-                      final url = 'https://twitter.com';
-                      if(await canLaunch(url))
-                        {
-                          await launch(
-                          url,
-                          forceSafariVC: true,
-                          forceWebView: true,
-                          enableJavaScript: true,
-                          );
-                        }
-                      else {
-                        throw 'Could not launch $url';
-                      }
-
-
-                  }
-                ),
-
-
-
-
-      ),
-
-
-
-
-
-
+            // Load a Lottie file from your assets
+           // Load a Lottie file from a remote url
+            Lottie.asset(
+               'assets/done.json',)
+            // Load an animation and its images from a zip file
 
           ],
-
 
 
 
