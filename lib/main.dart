@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'file.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 void main()
 {
   runApp(MaterialApp(
@@ -44,17 +44,27 @@ class _MainState extends State<Main> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                onPressed: () => Navigator.of(context).push(PageTransition(
-                  type: PageTransitionType.leftToRight,
-                  childCurrent: widget,
-                  duration: Duration(milliseconds: 600),
-                  reverseDuration: Duration(milliseconds: 600),
-                  child: File(),
+                onPressed: () async
+                  {
 
-                )),
+                      final url = 'https://twitter.com';
+                      if(await canLaunch(url))
+                        {
+                          await launch(
+                          url,
+                          forceSafariVC: true,
+                          forceWebView: true,
+                          enableJavaScript: true,
+                          );
+                        }
+                      else {
+                        throw 'Could not launch $url';
+                      }
 
 
-              ),
+                  }
+                ),
+
 
 
 
